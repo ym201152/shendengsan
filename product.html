@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>神灯广告伞</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<div class="top">
+ <div class="logo"><h1><img src="images/logo.jpg" alt="神灯广告伞"/></h1></div>
+ <div class="tel"><img src="images/tel.jpg" alt="" /></div>
+</div>
+<div class="clear"></div>
+<div id="nav">
+ <div class="nav">
+  <ul>
+   <li><a href="#">首页</a></li>
+   <li><a href="#">折叠伞</a></li>
+   <li><a href="#">直杆伞</a></li>
+   <li><a href="#">高尔夫伞</a></li>
+   <li><a href="#">自动伞</a></li>
+   <li><a href="#">户外太阳伞</a></li>
+   <li><a href="#">促销帐篷</a></li>
+   <li><a href="#">关于我们</a></li>
+   <li><a href="#">新闻动态</a></li>
+   <li><a href="#">联系我们</a></li>
+  </ul>
+ </div>
+</div>
+<div id="banner">
+  <div id="glume">
+    <ul class="Limg">
+      <li class="bg_1"></li>
+      <li class="bg_2"></li>
+      <li class="bg_3"></li>
+    </ul>
+    <cite class="Nubbt"> <span class="on"> </span><span > </span><span > </span></cite> </div>
+  <script language=javascript type="text/javascript">
+	(function(){
+		if(!Function.prototype.bind){
+			Function.prototype.bind = function(obj){
+				var owner = this,args = Array.prototype.slice.call(arguments),callobj = Array.prototype.shift.call(args);
+				return function(e){e=e||top.window.event||window.event;owner.apply(callobj,args.concat([e]));};
+			};
+		}
+	})();
+	var glume = function(id){
+		this.ctn = document.getElementById(id);
+		this.adLis = null;
+		this.btns = null;
+		this.animStep = 0.1;//动画速度0.1～0.9
+		this.switchSpeed =1.5;//自动播放间隔(s)
+		this.defOpacity = 1;
+		this.tmpOpacity = 1;
+		this.crtIndex = 0;
+		this.crtLi = null;
+		this.adLength = 0;
+		this.timerAnim = null;
+		this.timerSwitch = null;
+		this.init();
+	};
+	glume.prototype = {
+		fnAnim:function(toIndex){
+			if(this.timerAnim){window.clearTimeout(this.timerAnim);}
+			if(this.tmpOpacity <= 0){
+				this.crtLi.style.opacity = this.tmpOpacity = this.defOpacity;
+				this.crtLi.style.filter = 'Alpha(Opacity=' + this.defOpacity*100 + ')';
+				this.crtLi.style.zIndex = 0;
+				this.crtIndex = toIndex;
+				return;
+			}
+			this.crtLi.style.opacity = this.tmpOpacity = this.tmpOpacity - this.animStep;
+			this.crtLi.style.filter = 'Alpha(Opacity=' + this.tmpOpacity*100 + ')';
+			this.timerAnim = window.setTimeout(this.fnAnim.bind(this,toIndex),50);
+		},
+		fnNextIndex:function(){
+			return (this.crtIndex >= this.adLength-1)?0:this.crtIndex+1;
+		},
+		fnSwitch:function(toIndex){
+			if(this.crtIndex==toIndex){return;}
+			this.crtLi = this.adLis[this.crtIndex];
+			for(var i=0;i<this.adLength;i++){
+				this.adLis[i].style.zIndex = 0;
+			}
+			this.crtLi.style.zIndex = 2;
+			this.adLis[toIndex].style.zIndex = 1;
+			for(var i=0;i<this.adLength;i++){
+				this.btns[i].className = '';
+			}
+			this.btns[toIndex].className = 'on'
+			this.fnAnim(toIndex);
+		},
+		fnAutoPlay:function(){
+			this.fnSwitch(this.fnNextIndex());
+		},
+		fnPlay:function(){
+			this.timerSwitch = window.setInterval(this.fnAutoPlay.bind(this),this.switchSpeed*1000);
+		},
+		fnStopPlay:function(){
+			window.clearTimeout(this.timerSwitch);
+		},
+		init:function(){
+			this.adLis = this.ctn.getElementsByTagName('li');
+			this.btns = this.ctn.getElementsByTagName('cite')[0].getElementsByTagName('span');
+			this.adLength = this.adLis.length;
+			for(var i=0,l=this.btns.length;i<l;i++){
+				with({i:i}){
+					this.btns[i].index = i;
+					this.btns[i].onclick = this.fnSwitch.bind(this,i);
+					this.btns[i].onclick = this.fnSwitch.bind(this,i);
+				}
+			}
+			this.adLis[this.crtIndex].style.zIndex = 2;
+			this.fnPlay();
+			this.ctn.onmouseover = this.fnStopPlay.bind(this);
+			this.ctn.onmouseout = this.fnPlay.bind(this);
+		}
+	};
+	var player1 = new glume('glume');
+	</script> 
+ </div>
+<div id="content">
+ <div class="content">
+  <div class="left">
+   <div class="pro_list">
+    <img src="images/logo2.jpg" />
+    <ul>
+     <li>产品类别</li>
+     <li><a href="#">折叠伞</a></li>
+     <li><a href="#">直杆伞</a></li>
+     <li><a href="#">高尔夫伞</a></li>
+     <li><a href="#">自动伞</a></li>
+     <li><a href="#">户外太阳伞</a></li>
+     <li><a href="#">促销帐篷</a></li>
+    </ul>
+   </div>
+   <div class="lxwm">
+    <div class="lx_top">联系我们</div>
+    <img src="images/lx.jpg" />
+    <p>郑州神灯广告伞有限公司</p>
+    <p>电话：0371-1111111</p>
+    <p>传真：0371-1111111</p>
+    <p>手机：11111111111</p>
+    <p>地址：河南省郑州市金水区</p>
+    <p>网址：www.shendeng.com</p>
+   </div>
+  </div>
+  <div class="bor">
+  <div class="bor_top">产品展示<span>您当前所在的位置:&nbsp;<a href="#">首页</a>&nbsp;>&nbsp;<a  href="#">产品展示</a></div>
+  <div class="pro_show1">
+   <ul>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+    <li><a href="#"><img src="images/pic.jpg" alt="Y92新都汇" /><span>Y92新都汇</span></a></li>
+   
+  </div>
+ </div>
+ </div>
+</div>
+<div class="clear"></div>
+<div id="foot">
+ <div class="foot">
+ <div class="link">
+   <ul>
+    <li>友情链接:</li>
+    <li><a href="#">郑州新起点</a></li>
+    <li><a href="#">郑州新起点</a></li>
+   </ul>
+  </div>
+  <div class="clear"></div>
+  <p>版权所有：郑州神灯广告伞有限公司             技术支持：郑州新起点</p>
+  <p>电话：0371-11111111    传真：0371-1111111     联系人：赵经理</p>
+  <p>地址：河南省郑州市金水区北三环</p>
+ </div>
+</div>
+</body>
+</html>
